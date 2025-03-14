@@ -10,11 +10,10 @@ vehicles_df['manufacturer'] = vehicles_df['model'].apply(lambda x: x.split()[0])
 vehicles_df.dropna(inplace=True, subset=['model_year', 'cylinders', 'odometer', 'paint_color'])
 vehicles_df.fillna({'is_4wd': 0.0}, inplace=True)
 #Converting 'model_year' column to object datatype to mititgate errors in analysis 
-vehicles_df['model_year'] = vehicles_df['model_year'].astype(int)
-vehicles_df['model_year'] = vehicles_df['model_year'].astype(str)
+vehicles_df['model_year'] = vehicles_df['model_year'].astype('Int64', errors='ignore')
 #Converting 'price' and 'days_listed' to string 
-#vehicles_df['price'] = vehicles_df['price'].astype(str)
-#vehicles_df['days_listed'] = vehicles_df['days_listed'].astype(str)
+vehicles_df['price'] = vehicles_df['price'].astype('Int64', errors='ignore')
+vehicles_df['days_listed'] = vehicles_df['days_listed'].astype('Int64', errors='ignore')
 
 st.header('Data Viewer')
 vehicles_df
