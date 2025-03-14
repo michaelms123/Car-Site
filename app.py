@@ -13,11 +13,11 @@ vehicles_df.fillna({'is_4wd': 0.0}, inplace=True)
 vehicles_df['model_year'] = vehicles_df['model_year'].astype(int)
 vehicles_df['model_year'] = vehicles_df['model_year'].astype(str)
 #Converting 'price' and 'days_listed' to string 
-vehicles_df['price'] = vehicles_df['price'].astype(str)
-vehicles_df['days_listed'] = vehicles_df['days_listed'].astype(str)
+#vehicles_df['price'] = vehicles_df['price'].astype(str)
+#vehicles_df['days_listed'] = vehicles_df['days_listed'].astype(str)
 
 st.header('Data Viewer')
-st.dataframe(vehicles_df)
+vehicles_df
 
 #Histogram for vehicle types by manufacturer
 st.header('Vehicle Types by Manufacturer')
