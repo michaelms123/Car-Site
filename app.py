@@ -25,7 +25,7 @@ vehicles_df
 
 #Histogram for vehicle types by manufacturer
 st.header('Vehicle Types by Manufacturer')
-fig = px.histogram(vehicles_df, x='manufacturer', color='type')
+fig = px.histogram(vehicles_df, x='manufacturer', color='type', labels={'manufacturer': 'Vehicle Manufacturer', 'count': 'Vehicle Inventory'})
 st.write(fig)
 
 
