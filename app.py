@@ -9,7 +9,7 @@ vehicles_df['manufacturer'] = vehicles_df['model'].apply(lambda x: x.split()[0])
 #replacing missing values using 'fillna()'
 vehicles_df.fillna({'model_year': 'Unknown'}, inplace=True)
 vehicles_df.fillna({'paint_color': 'Unknown'}, inplace=True)
-vehicles_df.fillna({'odometer': 0}, inplace=True)
+vehicles_df.fillna({'odometer': 'Unknown'}, inplace=True)
 vehicles_df['is_4wd'].fillna('Unknown', inplace=True)
 #replacing the missing values in 'cylinders' column with the median cylinders 
 vehicles_df['cylinders'] = vehicles_df.groupby('model').cylinders.transform(lambda x: x.fillna(x.median()))
