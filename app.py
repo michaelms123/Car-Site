@@ -6,9 +6,13 @@ vehicles_df = pd.read_csv('https://practicum-content.s3.us-west-1.amazonaws.com/
 vehicles_df['manufacturer'] = vehicles_df['model'].apply(lambda x: x.split()[0])
 
 #Data preprocessing 
-#dropping missing values 
-vehicles_df.dropna(inplace=True, subset=['model_year', 'cylinders', 'odometer', 'paint_color'])
-vehicles_df.fillna({'is_4wd': 0.0}, inplace=True)
+#replacing missing values using 'groupby()'
+df_vehicles['paint_color'] = df_vehicles.groupby('model')['paint_color'].transform(lambda x: x.fillna('Unknown'))
+df_vehicles['odometer'] = df_vehicles.groupby(['model', 'model_year'])['odometer'].transform(lambda x: x.fillna(0))
+df_vehicles['is_4wd'] = df_vehicles.groupby(['model', 'model_year'])['is_4wd'].transform(lambda x: x.fillna('Unknown'))
+#replacing the missing values in 'cylinders' column with the median cylinders 
+df_vehicles['cylinders'] = df_vehicles.groupby('model').cylinders.transform(lambda x: x.fillna(x.median()))
+
 #Converting 'model_year' column to object datatype to mititgate errors in analysis 
 vehicles_df['model_year'] = vehicles_df['model_year'].astype('Int64', errors='ignore')
 #Converting 'price' and 'days_listed' to string 
